@@ -1,8 +1,8 @@
 const { Schema, default: mongoose } = require("mongoose");
 
 const FeedSchema = new Schema({
-    title: { type: String, required: [true, "Title is required"] },
-    body: { type: String, required: [true, "Body is required"] },
+    title: { type: String, unique: true, required: [true, "Title is required"] },
+    body: { type: String, },
     image: { type: String },
     source: { type: String, required: [true, "Source is required"] },
     publisher: { type: String },

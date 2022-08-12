@@ -16,6 +16,7 @@ const validateFeed = async (feed)=>{
         return true;
 
     } catch (error){
+        console.log( error );
         return false;
     }
 
@@ -32,8 +33,18 @@ const createFeed = async (feed)=>{
     const valid = await validateFeed(feed);
     if ( !valid ) return valid;
 
-    const newFeed = await new Feed(feed).save();
-    return newFeed;
+    try {
+        const newFeed = await new Feed(feed).save();
+        return newFeed;
+    } catch ( error ) {
+        
+        if ( error.code === 11000 ) { //duplicate key
+            const find = Feed.findOne({ title: feed.title })
+            return find
+        }
+
+        return false
+    }
 
 };
 exports.createFeed = createFeed;
