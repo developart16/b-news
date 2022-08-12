@@ -26,3 +26,6 @@ FEED = {
   publisher: "[urlPagina]" // https://www.elmundo.es//
 }
 ```
+
+## DB
+Debe existir la base de datos `news` la cual creara la coleccion Feeds
